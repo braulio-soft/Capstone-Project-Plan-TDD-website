@@ -1,0 +1,18 @@
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #333;
+  color: white;
+  padding: 10px;
+}
+
+
+
+
+
+
+
+/* 
+for future reference might get deleted
+style={{ padding: '10px', backgroundColor: '#333', color: '#fff' }} */
