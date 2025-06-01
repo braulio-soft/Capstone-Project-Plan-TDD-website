@@ -1,31 +1,34 @@
-
 import React, { useState } from 'react';
 
-function SignUpForm() {
+function UserForm() {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    phoneNumber: '',
+    age: ''
   });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
+    setFormData(prev => ({
+      ...prev,
       [name]: value
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Sign Up:', formData);
-    // send to API or handle validation here
+    console.log('Submitted User Data:', formData);
+
+    // You could send data to an API here
+    // fetch('/api/users', { method: 'POST', body: JSON.stringify(formData) })
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto' }}>
-      <h2>Sign Up</h2>
+    <div style={{ maxWidth: '500px', margin: 'auto' }}>
+      <h2>Create User</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label>First Name:</label><br />
@@ -37,6 +40,7 @@ function SignUpForm() {
             required
           />
         </div>
+
         <div>
           <label>Last Name:</label><br />
           <input
@@ -47,6 +51,7 @@ function SignUpForm() {
             required
           />
         </div>
+
         <div>
           <label>Email:</label><br />
           <input
@@ -57,6 +62,7 @@ function SignUpForm() {
             required
           />
         </div>
+
         <div>
           <label>Password:</label><br />
           <input
@@ -67,10 +73,31 @@ function SignUpForm() {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+
+        <div>
+          <label>Phone Number:</label><br />
+          <input
+            type="tel"
+            name="phoneNumber"
+            value={formData.phoneNumber}
+            onChange={handleChange}
+          />
+        </div>
+
+        <div>
+          <label>Age:</label><br />
+          <input
+            type="number"
+            name="age"
+            value={formData.age}
+            onChange={handleChange}
+          />
+        </div>
+
+        <button type="submit" style={{ marginTop: '12px' }}>Submit</button>
       </form>
     </div>
   );
 }
 
-export default SignUpForm;
+export default UserForm;
