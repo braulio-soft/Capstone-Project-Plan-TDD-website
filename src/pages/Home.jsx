@@ -1,13 +1,31 @@
-import React from 'react';
+
+
 
 function Home({ data }) {
+ 
+
+
   return (
     <div>
+      
       <section style={{ backgroundImage: `url(${data.heroBanner.backgroundImage})`, padding: '60px', color: '#fff' }}>
         <h1>{data.heroBanner.title}</h1>
         <p>{data.heroBanner.subtitle}</p>
         <a href={data.heroBanner.ctaLink}>{data.heroBanner.ctaText}</a>
       </section>
+
+
+
+
+      <section>
+        <h2>Categories</h2>
+        <ul>
+          {data.categories.map(cat => (
+            <li key={cat.id}><a href={`/category/${cat.slug}`}>{cat.name}</a></li>
+          ))}
+        </ul>
+      </section>
+
 
       <section>
         <h2>Featured Movies</h2>
@@ -21,17 +39,10 @@ function Home({ data }) {
         </div>
       </section>
 
-      <section>
-        <h2>Categories</h2>
-        <ul>
-          {data.categories.map(cat => (
-            <li key={cat.id}><a href={`/category/${cat.slug}`}>{cat.name}</a></li>
-          ))}
-        </ul>
-      </section>
+
 
       <section>
-        <h2>Recommended For You</h2>
+        <h2>Staff Picks This Month</h2>
         {data.recommended.map(movie => (
           <div key={movie.id}>
             <img src={movie.image} alt={movie.title} width="150" />
