@@ -1,6 +1,6 @@
 
 
-function Products({ item }) {
+function Shows ({ item }) {
   if (!item) return null;
 
   const isMovie = item.type === 'movie';
@@ -38,8 +38,9 @@ const styles = {
     padding: '16px',
     marginBottom: '16px',
     backgroundColor: '#f9f9f9',
-    boxShadow: '0 2px 6px rgba(0,0,0,0.05)'
+    boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
+     color: '#333'
   }
 };
 
-export default Products;
+export default Shows;
