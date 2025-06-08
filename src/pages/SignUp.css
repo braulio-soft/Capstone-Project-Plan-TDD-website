@@ -1,0 +1,25 @@
+.signup-container{
+ padding-top: 100px;
+}
+
+.signup-container input,
+.signup-container select {
+  background-color: hsl(39, 100%, 50%); 
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color:#8A2BE2;
+}
+
+
+.signup-container label {
+    color:#8A2BE2
+}
+
+.signup{
+    color:#8A2BE2
+}
+
+.button{
+    color:#8A2BE2
+}

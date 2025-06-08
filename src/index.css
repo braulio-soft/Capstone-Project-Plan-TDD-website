@@ -13,11 +13,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-html, body {
+/* html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-}
+} */
 
 body {
   min-width: 320px;

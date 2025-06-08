@@ -17,6 +17,21 @@
     align-items: center;
 }
 
+body{
+
+}
+
+.subscribe-link {
+  color:#FFA500;
+}
+
+/* Add space below each major section */
+.featured-section,
+.recommended-section,
+.subscription-section {
+  margin-bottom: .25rem; /* Adjust as needed */
+}
+
 /* .hero-banner {
   padding-top: 70px; 
 

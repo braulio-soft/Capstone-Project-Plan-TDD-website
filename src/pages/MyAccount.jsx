@@ -1,7 +1,5 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  
-
-
 import './MyAccount.css'; 
 
 function MyAccount() {
@@ -9,7 +7,14 @@ function MyAccount() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPlan, setCurrentPlan] = useState('standard');
   const [selectedUpgrade, setSelectedUpgrade] = useState('');
+  const [error, setError] = useState('');
   const navigate = useNavigate();  
+
+  const planPrices = {
+    standard: 10.99,
+    level1: 11.99,
+    level2: 13.99
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,23 +26,29 @@ function MyAccount() {
     setIsLoggedIn(true); 
   };
 
-  const handleUpgradeChange = (e) => setSelectedUpgrade(e.target.value);
+  const handleUpgradeChange = (e) => {
+    setSelectedUpgrade(e.target.value);
+    setError('');
+  };
 
   const handleUpgradeSubmit = (e) => {
     e.preventDefault();
 
-    // If "Not at this time" or same plan selected
     if (!selectedUpgrade || selectedUpgrade === currentPlan) {
-      alert('No upgrade selected. Redirecting to Home.');
-      navigate('/');  // Redirect to home
+      setError('Please select a different upgrade plan.');
       return;
     }
 
-    // Upgrade selected
+    setError('');
     setCurrentPlan(selectedUpgrade);
     alert(`Successfully upgraded to the ${selectedUpgrade} plan!`);
-
-   navigate('/checkOut', { state: { plan: selectedUpgrade } });  // Redirect to checkout
+    navigate('/checkOut', {
+      state: {
+        plan: selectedUpgrade,
+        title: `${selectedUpgrade.charAt(0).toUpperCase() + selectedUpgrade.slice(1)} Plan`,
+        price: planPrices[selectedUpgrade]
+      }
+    });
   };
 
   return (
@@ -63,8 +74,14 @@ function MyAccount() {
                 onChange={handleChange}
                 required
               />
-              <button type="submit">Login</button>
+              <button className='loginbttn' type="submit">Login</button>
             </form>
+
+            <div className="forgot-links">
+              <p onClick={() => navigate('/ForgotPassword')} className="clickable">
+                Forgot Password?
+              </p>
+            </div>
           </>
         ) : (
           <>
@@ -80,7 +97,13 @@ function MyAccount() {
                 <option value="level1">Level 1 - $11.99</option>
                 <option value="level2">Level 2 - $13.99</option>
               </select>
-              <button type="submit">Upgrade Plan</button>
+              {error && <p className="error-message">{error}</p>}
+              <button
+                type="submit"
+                disabled={!selectedUpgrade || selectedUpgrade === currentPlan}
+              >
+                Upgrade Plan
+              </button>
             </form>
           </>
         )}
@@ -90,5 +113,8 @@ function MyAccount() {
 }
 
 export default MyAccount;
+
+
+
 
 

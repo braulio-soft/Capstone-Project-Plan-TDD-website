@@ -1,4 +1,6 @@
 
+import './Movies.css';
+
 
 function Movies ({ item }) {
   if (!item) return null;
