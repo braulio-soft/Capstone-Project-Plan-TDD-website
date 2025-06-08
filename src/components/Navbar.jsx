@@ -1,74 +1,47 @@
-
-
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './navbar.css'; 
-
-
+import './navbar.css';
 
 function Navbar() {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const toggleDropdown = () => setDropdownOpen(prev => !prev);
+  const closeDropdown = () => setDropdownOpen(false);
+
   return (
-    <nav>
-      <ul style={{ listStyle: 'none', display: 'flex', gap: '15px', margin: 0 }}>
-        <li><Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Home</Link></li>
-        <li><Link to="/Movies" style={{ color: '#fff', textDecoration: 'none' }}>Movies</Link></li>
-        <li><Link to="/Shows" style={{ color: '#fff', textDecoration: 'none' }}>Shows</Link></li>
-        <li><Link to="/MyAccount" style={{ color: '#fff', textDecoration: 'none' }}>My Account</Link></li>
-        <li><Link to="/signUp" style={{ color: '#fff', textDecoration: 'none' }}>Sign Up</Link></li>
-        <li><Link to="/cart" style={{ color: '#fff', textDecoration: 'none' }}>Cart</Link></li>
-      </ul>
+    <nav className="navbar">
+      <div className="navbar-container">
+        <div className="navbar-brand">
+          <Link to="/" onClick={closeDropdown}>
+            <span style={{ fontSize: '2rem', color: 'orange' }}>🇲🇭</span> Movie House
+          </Link>
+        </div>
+      </div>
+
+      {/* ✅ Moved out of .navbar-container to prevent layout shift */}
+      <div className="navbar-menu-wrapper">
+        <button
+          className="navbar-toggle"
+          onClick={toggleDropdown}
+          aria-haspopup="true"
+          aria-expanded={dropdownOpen}
+        >
+          Menu ▼
+        </button>
+
+        {dropdownOpen && (
+          <ul className="navbar-dropdown">
+            <li><Link to="/" onClick={closeDropdown}>Home</Link></li>
+            <li><Link to="/Movies" onClick={closeDropdown}>Movies</Link></li>
+            <li><Link to="/Shows" onClick={closeDropdown}>Shows</Link></li>
+            <li><Link to="/MyAccount" onClick={closeDropdown}>My Account</Link></li>
+            <li><Link to="/signUp" onClick={closeDropdown}>Sign Up</Link></li>
+            <li><Link to="/cart" onClick={closeDropdown}>Cart</Link></li>
+          </ul>
+        )}
+      </div>
     </nav>
   );
 }
 
 export default Navbar;
-
-
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// // import './navbar.css'
-// import { Link } from 'react-router';
-
-
-// export default function Navbar() {
-//   return (
-//     <nav>
-//       <h1>My App</h1>
-//       <ul >
-//         <li><Link to="/" >Home</Link></li>
-//         <li><Link to="/login">Login</Link></li>
-//         <li><Link to="/signup">Signup</Link></li>
-//          <li><Link to="/cart">Cart</Link></li>
-//       </ul>
-//     </nav>
-//   );
-// }
-
-// console.log("Navbar loaded");

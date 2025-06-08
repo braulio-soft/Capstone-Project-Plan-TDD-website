@@ -1,0 +1,18 @@
+.movie-row {
+  display: flex;          /* arrange children side by side */
+  flex-direction: row;    /* horizontal layout */
+  gap: 20px;              /* space between cards */
+  justify-content: center; /* optional: center all cards horizontally */
+}
+
+.movie-card {
+  display: flex;
+  flex-direction: column; /* stack image and title vertically */
+  align-items: center;    /* center content inside card */
+  width: 150px;           /* fixed width for uniform size */
+}
+
+
+.titles{
+    align-items: center;
+}

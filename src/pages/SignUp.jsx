@@ -6,7 +6,8 @@ function SignUpForm() {
     firstName: '',
     lastName: '',
     email: '',
-    password: ''
+    password: '',
+    plan: ''
   });
 
   const handleChange = (e) => {
@@ -19,6 +20,12 @@ function SignUpForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    if (!formData.plan) {
+      alert('Please select a pricing plan.');
+      return;
+    }
+
     console.log('Sign Up:', formData);
     // send to API or handle validation here
   };
@@ -67,7 +74,21 @@ function SignUpForm() {
             required
           />
         </div>
-        <button type="submit">Sign Up</button>
+        <div>
+          <label>Choose a Plan:</label><br />
+          <select
+            name="plan"
+            value={formData.plan}
+            onChange={handleChange}
+            required
+          >
+            <option value="">-- Select a plan --</option>
+            <option value="standard">Standard - $10.99</option>
+            <option value="level1">Level 1 - $11.99</option>
+            <option value="level2">Level 2 - $13.99</option>
+          </select>
+        </div>
+        <button type="submit">Join the family</button>
       </form>
     </div>
   );

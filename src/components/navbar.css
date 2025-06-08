@@ -1,11 +1,80 @@
-nav {
-  position: sticky;
+.navbar {
+  position: fixed;
   top: 0;
-  z-index: 1000;
+  left: 0;
+  width: 100%;
   background-color: #333;
-  color: white;
-  padding: 10px;
+  color: #fff;
+  z-index: 999;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+
+  /*  new: flex layout for spacing */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
 }
+
+.navbar-container {
+  flex-grow: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  
+}
+
+.navbar-brand a {
+  color: #fff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+/*  New wrapper to anchor dropdown and prevent layout shift */
+.navbar-menu-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.navbar-toggle {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  padding: 0.5rem 0;
+  width: 150px;
+  z-index: 1000;
+}
+
+.navbar-dropdown li {
+  padding: 0.5rem 1rem;
+}
+
+.navbar-dropdown li a {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+}
+
+.navbar-dropdown li a:hover {
+  background-color: #555;
+}
+
+
+
+
 
 
 

@@ -1,40 +1,37 @@
 
 // pages/ShowsDetails.jsx
 import React, { useEffect, useState } from 'react';
-import Shows from '../pages/Shows'; // Make sure this path matches your file structure
+import Shows from '../pages/Shows'; // Ensure this path is correct
 
 const ShowsDetails = () => {
   const [tvShows, setTvShows] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    // Dummy data for TV shows
-    const dummyShows = [
-      {
-        name: 'Breaking Bad',
-        type: 'show',
-        category: 'Crime, Drama',
-        price: 0,
-        payment_date: 'N/A',
-        release_date: '2008-01-20',
-        rating: 'TV-MA',
-        created_date: '2025-05-01',
-        updated_date: '2025-06-01',
-      },
-      {
-        name: 'Stranger Things',
-        type: 'show',
-        category: 'Sci-Fi, Thriller',
-        price: 0,
-        payment_date: 'N/A',
-        release_date: '2016-07-15',
-        rating: 'TV-14',
-        created_date: '2025-05-01',
-        updated_date: '2025-06-01',
-      }
-    ];
+    async function fetchShows() {
+      try {
+        setLoading(true);
 
-    setTvShows(dummyShows);
+        // Replace with your actual backend API endpoint
+        const response = await fetch('/api/shows');
+        if (!response.ok) throw new Error('Failed to fetch TV shows');
+        
+        const data = await response.json();
+        setTvShows(data);
+        setError(null);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchShows();
   }, []);
+
+  if (loading) return <p>Loading TV shows...</p>;
+  if (error) return <p>Error loading shows: {error}</p>;
 
   return (
     <div style={{ padding: '1rem' }}>

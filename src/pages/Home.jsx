@@ -1,37 +1,26 @@
+import './Home.css';
 
 
 
 function Home({ data }) {
- 
-
-
   return (
-    <div>
-      
-      <section style={{ backgroundImage: `url(${data.heroBanner.backgroundImage})`, padding: '60px', color: '#fff' }}>
-        <h1>{data.heroBanner.title}</h1>
-        <p>{data.heroBanner.subtitle}</p>
-        <a href={data.heroBanner.ctaLink}>{data.heroBanner.ctaText}</a>
+    <div className="home">
+
+      <section className="hero-banner" style={{ backgroundImage: `url(${data.heroBanner.backgroundImage})` }}>
+        <div className="hero-content">
+          <h1>{data.heroBanner.title}</h1>
+          <p>{data.heroBanner.subtitle}</p>
+          {data.heroBanner.ctaLink && data.heroBanner.ctaText && (
+            <a className="hero-cta" href={data.heroBanner.ctaLink}>{data.heroBanner.ctaText}</a>
+          )}
+        </div>
       </section>
 
-
-
-
-      <section>
-        <h2>Categories</h2>
-        <ul>
-          {data.categories.map(cat => (
-            <li key={cat.id}><a href={`/category/${cat.slug}`}>{cat.name}</a></li>
-          ))}
-        </ul>
-      </section>
-
-
-      <section>
-        <h2>Featured Movies</h2>
-        <div style={{ display: 'flex', gap: '16px' }}>
+      <section className="featured-section">
+        <h2 classname="titles">Featured Movies</h2>
+        <div className="movie-row featured-movies">
           {data.featuredMovies.map(movie => (
-            <div key={movie.id}>
+            <div key={movie.id} className="movie-card">
               <img src={movie.image} alt={movie.title} width="150" />
               <p>{movie.title}</p>
             </div>
@@ -39,25 +28,31 @@ function Home({ data }) {
         </div>
       </section>
 
-
-
-      <section>
-        <h2>Staff Picks This Month</h2>
-        {data.recommended.map(movie => (
-          <div key={movie.id}>
-            <img src={movie.image} alt={movie.title} width="150" />
-            <p>{movie.title}</p>
-          </div>
-        ))}
+      <section className="recommended-section">
+        <h2 classname="titles">Staff Picks This Month</h2>
+        <div className="movie-row recommended-movies">
+          {data.recommended.map(movie => (
+            <div key={movie.id} className="movie-card">
+              <img src={movie.image} alt={movie.title} width="150" />
+              <p>{movie.title}</p>
+            </div>
+          ))}
+        </div>
       </section>
 
-      <section style={{ backgroundColor: '#eee', padding: '20px', marginTop: '40px' }}>
-        <h3>{data.subscriptionPromo.heading}</h3>
-        <p>{data.subscriptionPromo.description}</p>
-        <a href={data.subscriptionPromo.link}>Subscribe Now - {data.subscriptionPromo.price}</a>
+      <section className="subscription-section">
+        <div className="subscription-content">
+          <h3>{data.subscriptionPromo.heading}</h3>
+          <p>{data.subscriptionPromo.description}</p>
+          <a className="subscribe-link" href={data.subscriptionPromo.link}>
+            Subscribe Now - {data.subscriptionPromo.price}
+          </a>
+        </div>
       </section>
+
     </div>
   );
 }
+
 
 export default Home;
