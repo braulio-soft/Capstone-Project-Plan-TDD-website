@@ -22,8 +22,7 @@ function UserForm() {
     e.preventDefault();
     console.log('Submitted User Data:', formData);
 
-    // You could send data to an API here
-    // fetch('/api/users', { method: 'POST', body: JSON.stringify(formData) })
+ 
   };
 
   return (

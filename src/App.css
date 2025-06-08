@@ -42,3 +42,14 @@
   color: #888;
 }
 
+
+body {
+  background: linear-gradient(135deg, #FFA500, #8A2BE2);
+  min-height: 100vh;
+  margin: 0;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+

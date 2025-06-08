@@ -3,12 +3,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  background-color: #333;
+  background-color: rgba(20, 20, 30, 0.85); 
   color: #fff;
   z-index: 999;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 
-  /*  new: flex layout for spacing */
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -21,7 +20,6 @@
   margin: 0 auto;
   display: flex;
   align-items: center;
-  
 }
 
 .navbar-brand a {
@@ -31,7 +29,6 @@
   text-decoration: none;
 }
 
-/*  New wrapper to anchor dropdown and prevent layout shift */
 .navbar-menu-wrapper {
   position: relative;
   flex-shrink: 0;
@@ -71,7 +68,6 @@
 .navbar-dropdown li a:hover {
   background-color: #555;
 }
-
 
 
 

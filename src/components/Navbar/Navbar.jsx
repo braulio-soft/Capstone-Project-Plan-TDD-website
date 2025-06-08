@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import './navbar.css';
+import './Navbar.css';
 
 function Navbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -13,12 +13,11 @@ function Navbar() {
       <div className="navbar-container">
         <div className="navbar-brand">
           <Link to="/" onClick={closeDropdown}>
-            <span style={{ fontSize: '2rem', color: 'orange' }}>🇲🇭</span> Movie House
           </Link>
         </div>
       </div>
 
-      {/* ✅ Moved out of .navbar-container to prevent layout shift */}
+     
       <div className="navbar-menu-wrapper">
         <button
           className="navbar-toggle"

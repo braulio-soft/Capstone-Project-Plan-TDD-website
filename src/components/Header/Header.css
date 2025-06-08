@@ -1,0 +1,19 @@
+.app-header {
+  width: 100%;
+  background-color: rgba(20, 20, 30, 0.85);
+  color: white;
+  padding: 1rem 0;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.app-header .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.header-title {
+  margin: 0;
+  font-size: 2rem;
+}

@@ -1,18 +1,36 @@
 .movie-row {
-  display: flex;          /* arrange children side by side */
-  flex-direction: row;    /* horizontal layout */
-  gap: 20px;              /* space between cards */
-  justify-content: center; /* optional: center all cards horizontally */
+  display: flex;          
+  flex-direction: row; 
+  gap: 20px;              
+  justify-content: center;
 }
 
 .movie-card {
   display: flex;
-  flex-direction: column; /* stack image and title vertically */
-  align-items: center;    /* center content inside card */
-  width: 150px;           /* fixed width for uniform size */
+  flex-direction: column; 
+  align-items: center;    
+  width: 150px;           
 }
 
 
 .titles{
     align-items: center;
 }
+
+/* .hero-banner {
+  padding-top: 70px; 
+
+}
+
+.subscription-section {
+  margin-bottom: 100px; 
+} */
+
+/* .home {
+  padding-top: 70px;
+  padding-bottom: 100px;
+} */
+
+
+
+
