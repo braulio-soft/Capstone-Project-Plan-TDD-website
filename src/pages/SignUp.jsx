@@ -1,5 +1,8 @@
 
 import React, { useState } from 'react';
+import './SignUp.css'; 
+
+
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -31,11 +34,12 @@ function SignUpForm() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: 'auto' }}>
-      <h2>Sign Up</h2>
+    <div className='SignUp-container'>
+          <div style={{ maxWidth: '400px', margin: 'auto' }}>
+      <h2 className='text'>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>First Name:</label><br />
+          <label className='text'>First Name:</label><br />
           <input
             type="text"
             name="firstName"
@@ -45,7 +49,7 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label>Last Name:</label><br />
+          <label className='text'>Last Name:</label><br />
           <input
             type="text"
             name="lastName"
@@ -55,7 +59,7 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label>Email:</label><br />
+          <label className='text'>Email:</label><br />
           <input
             type="email"
             name="email"
@@ -65,7 +69,7 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label>Password:</label><br />
+          <label className='text'>Password:</label><br />
           <input
             type="password"
             name="password"
@@ -75,22 +79,27 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label>Choose a Plan:</label><br />
+          <label className='text'>Choose a Plan:</label><br />
           <select
             name="plan"
             value={formData.plan}
             onChange={handleChange}
             required
           >
-            <option value="">-- Select a plan --</option>
-            <option value="standard">Standard - $10.99</option>
-            <option value="level1">Level 1 - $11.99</option>
-            <option value="level2">Level 2 - $13.99</option>
+            <option className='list' value="">-- Select a plan --</option>
+            <option className='list' value="standard">Standard - $10.99</option>
+            <option className='list' value="level1">Level 1 - $11.99</option>
+            <option className='list' value="level2">Level 2 - $13.99</option>
           </select>
         </div>
-        <button type="submit">Join the family</button>
+        <br></br>
+        <br></br>
+        <button className='text' type="submit">Join the family</button>
       </form>
     </div>
+
+    </div>
+
   );
 }
 

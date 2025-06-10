@@ -17,6 +17,20 @@
     align-items: center;
 }
 
+.subscribe-link {
+  color: #FFA500;
+ 
+}
+
+.home{
+  padding-top: 15px;
+}
+
+.subscription-section{
+  border-bottom:15px;
+}
+
+
 /* .hero-banner {
   padding-top: 70px; 
 

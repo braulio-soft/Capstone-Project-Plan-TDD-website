@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-// Helper function to detect card brand
+
 const getCardBrand = (number) => {
   if (/^4/.test(number)) return "Visa";
   if (/^5[1-5]/.test(number)) return "Mastercard";
@@ -24,7 +24,7 @@ function Checkout({ cartItems = [] }) {
     const { name, value } = e.target;
 
     if (name === "cardNumber") {
-      const cleaned = value.replace(/\D/g, ''); // Remove non-digits
+      const cleaned = value.replace(/\D/g, '');
       const brand = getCardBrand(cleaned);
 
       setBillingInfo(prev => ({

@@ -14,13 +14,13 @@ function Cart({ cartItems = [], onRemoveItem, onUpdateQuantity }) {
 
   return (
     <div style={{ maxWidth: '800px', margin: 'auto', padding: '20px' }}>
-      <h2>Your Cart</h2>
+      <h2 className='text'>Your Cart</h2>
 
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p className='text'>Your cart is empty.</p>
       ) : (
         <table width="100%" border="1" cellPadding="10" style={{ borderCollapse: 'collapse' }}>
-          <thead>
+          <thead className='text'>
             <tr>
               <th>Item</th>
               <th>Price</th>
@@ -53,10 +53,10 @@ function Cart({ cartItems = [], onRemoveItem, onUpdateQuantity }) {
         </table>
       )}
 
-      <div style={{ marginTop: '20px', textAlign: 'right' }}>
-        <h3>Total: ${total}</h3>
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <h3 className='text' >Total: ${total}</h3>
         {cartItems.length > 0 && (
-          <button onClick={handleCheckout}>Proceed to Checkout</button>
+          <button className='text' onClick={handleCheckout}>Proceed to Checkout</button>
         )}
       </div>
     </div>

@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   background-color: rgba(20, 20, 30, 0.85); 
-  color: #fff;
+  color: #8A2BE2;
   z-index: 999;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 
@@ -23,7 +23,7 @@
 }
 
 .navbar-brand a {
-  color: #fff;
+  color: #8A2BE2;
   font-size: 1.5rem;
   font-weight: bold;
   text-decoration: none;
@@ -32,21 +32,24 @@
 .navbar-menu-wrapper {
   position: relative;
   flex-shrink: 0;
+  left: -50px;
 }
 
 .navbar-toggle {
   background: none;
   border: none;
-  color: #fff;
+  color: #8A2BE2;
   font-size: 1.1rem;
   cursor: pointer;
+    
+  color:#FFA500
 }
 
 .navbar-dropdown {
   position: absolute;
   top: 100%;
-  left: 0;
-  background-color: #444;
+  left: -29px;
+  background: linear-gradient(135deg, #FFA500, #8A2BE2);
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   list-style: none;
@@ -60,13 +63,13 @@
 }
 
 .navbar-dropdown li a {
-  color: #fff;
+  color:#5b08a8;
   text-decoration: none;
   display: block;
 }
 
 .navbar-dropdown li a:hover {
-  background-color: #555;
+  background-color: #eeb64e;
 }
 
 

@@ -29,7 +29,7 @@ function MyAccount() {
     // If "Not at this time" or same plan selected
     if (!selectedUpgrade || selectedUpgrade === currentPlan) {
       alert('No upgrade selected. Redirecting to Home.');
-      navigate('/');  // Redirect to home
+      navigate('/');  
       return;
     }
 
@@ -37,7 +37,7 @@ function MyAccount() {
     setCurrentPlan(selectedUpgrade);
     alert(`Successfully upgraded to the ${selectedUpgrade} plan!`);
 
-   navigate('/checkOut', { state: { plan: selectedUpgrade } });  // Redirect to checkout
+   navigate('/checkOut', { state: { plan: selectedUpgrade } });  
   };
 
   return (
@@ -45,25 +45,30 @@ function MyAccount() {
       <div className="login-box">
         {!isLoggedIn ? (
           <>
-            <h2>Login</h2>
+            <h2 className='text'>Login</h2>
             <form onSubmit={handleSubmit}>
-              <label>Email:</label>
-              <input
+              <label className='text'>Email:</label>
+              
+              <input className="form-input"
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
               />
-              <label>Password:</label>
-              <input
+              <label className='text'>Password:</label>
+              <input className="form-input"
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 required
               />
-              <button type="submit">Login</button>
+              <br>
+              </br>
+              <br>
+              </br>
+              <button className='text' type="submit">Login</button>
             </form>
           </>
         ) : (

@@ -17,29 +17,6 @@ import Home from './pages/Home';
 import Pricingplans from './pages/Pricingplans';
 import './App.css';
 
-// HomePage Data
-const data = {
-  heroBanner: {
-    subtitle: 'Lets get you started. Check out our featured films and Staff Picks for the month!',
-  },
-  featuredMovies: [
-    { id: 1, image: '/movieimages/GrownUps.jpg', title: 'Grown Ups' },
-    { id: 2, image: '/movieimages/WeretheMillers.jpg', title: 'We are the Millers' },
-    { id: 3, image: '/movieimages/Friday.jpg', title: 'Friday' },
-  ],
-  recommended: [
-    { id: 1, title: 'The Dark Knight', image: '/movieimages/TheDarkKnight.jpg' },
-    { id: 2, title: 'Sinners', image: '/movieimages/Sinners.jpg' },
-    { id: 3, title: 'The Matrix', image: '/movieimages/Matrix.jpg' },
-  ],
-  subscriptionPromo: {
-    heading: 'Our Hottest Plan',
-    description:
-      'Stream your favorite exclusive movies and shows while enjoying an ad-free experience as a Level 2 member.',
-    link: 'Get Level 2 and see a better view',
-    price: 'first week free then $13.99/month',
-  },
-};
 
 
 
@@ -49,7 +26,7 @@ function App() {
     <Header />
       <div style={{ paddingTop: '70px' }}>
         <Routes>
-          <Route path="/" element={<Home data={data} />} />
+          <Route path="/" element={<Home/>} />
           <Route path="/MyAccount" element={<MyAccount />} />
           <Route path="/SignUp" element={<SignUp />} />
           <Route path="/Cart" element={<Cart />} />

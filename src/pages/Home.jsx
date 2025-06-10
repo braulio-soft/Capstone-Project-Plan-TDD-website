@@ -1,13 +1,33 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
 
+const data = {
+  heroBanner: {
+    subtitle: 'Lets get you started. Check out our featured films and Staff Picks for the month!',
+  },
+  featuredMovies: [
+    { id: 1, image: '/movieimages/GrownUps.jpg', title: '' },
+    { id: 2, image: '/movieimages/WeretheMillers.jpg', title: '' },
+    { id: 3, image: '/movieimages/Friday.jpg', title: '' },
+  ],
+  recommended: [
+    { id: 1, title: '', image: '/movieimages/TheDarkKnight.jpg' },
+    { id: 2, title: '', image: '/movieimages/Sinners.jpg' },
+    { id: 3, image: '/movieimages/Matrix.jpg', title: '' },
+  ],
+  subscriptionPromo: {
+    heading: 'Our Hottest Plan',
+    description:
+      'Stream your favorite exclusive movies and shows while enjoying an ad-free experience as a Level 2 member.',
+    link: 'Get Level 2 and see a better view',
+    price: 'first week free then $13.99/month',
+  }
+};
 
-
-function Home({data }) {
+function Home() {
   return (
     <div className="home">
-
-      <section className="hero-banner" >
+      <section className="hero-banner">
         <div className="hero-content">
           <h1>{data.heroBanner.title}</h1>
           <p>{data.heroBanner.subtitle}</p>
@@ -41,20 +61,18 @@ function Home({data }) {
         </div>
       </section>
 
-<section className="subscription-section">
-  <div className="subscription-content">
-    <h3>{data.subscriptionPromo.heading}</h3>
-    <p>{data.subscriptionPromo.description}</p>
-    <Link className="subscribe-link" to="/SignUp">
-      Subscribe Now - {data.subscriptionPromo.price}
-    </Link>
-  </div>
-</section>
-
-
+      <section className="subscription-section">
+        <div className="subscription-content">
+          <h3>{data.subscriptionPromo.heading}</h3>
+          <p>{data.subscriptionPromo.description}</p>
+          <Link className="subscribe-link" to="/SignUp">
+            {data.subscriptionPromo.link} - {data.subscriptionPromo.price}
+          </Link>
+        </div>
+      </section>
     </div>
   );
 }
 
-
 export default Home;
+
