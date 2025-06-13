@@ -1,51 +1,102 @@
+.home {
+  padding: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.hero-banner {
+  background-color: #111;
+  color: #fff;
+  padding: 2rem;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 2rem;
+}
+
+.hero-content p {
+  font-size: 1rem;
+  max-width: 600px;
+  margin: auto;
+}
+
+.titles {
+  margin: 1rem 0;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
 .movie-row {
-  display: flex;          
-  flex-direction: row; 
-  gap: 20px;              
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
   justify-content: center;
 }
 
 .movie-card {
-  display: flex;
-  flex-direction: column; 
-  align-items: center;    
-  width: 150px;           
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  padding: 0.5rem;
+  max-width: 150px;
+  text-align: center;
+ color: black;
 }
 
-
-.titles{
-    align-items: center;
+.movie-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px;
 }
 
-body{
+.subscription-section {
+  background-color: #ffe9e0;
+  padding: 2rem;
+  margin-top: 2rem;
+  text-align: center;
+  border-radius: 10px;
+}
 
+.subscription-content h3 {
+  font-size: 1.5rem;
 }
 
 .subscribe-link {
-  color:#FFA500;
+  display: inline-block;
+  margin-top: 1rem;
+  background-color: #ff5e5e;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  text-decoration: none;
 }
 
-/* Add space below each major section */
-.featured-section,
-.recommended-section,
-.subscription-section {
-  margin-bottom: .25rem; /* Adjust as needed */
+.subscribe-link:hover {
+  background-color: #e24b4b;
 }
 
-/* .hero-banner {
-  padding-top: 70px; 
+/* Responsive Media Queries */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 1.5rem;
+  }
 
+  .titles {
+    font-size: 1.3rem;
+  }
+
+  .movie-card {
+    max-width: 45%;
+  }
 }
 
-.subscription-section {
-  margin-bottom: 100px; 
-} */
+@media (max-width: 480px) {
+  .movie-card {
+    max-width: 90%;
+  }
 
-/* .home {
-  padding-top: 70px;
-  padding-bottom: 100px;
-} */
-
-
-
-
+  .subscribe-link {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+  }
+}

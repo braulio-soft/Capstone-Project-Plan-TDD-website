@@ -1,10 +1,11 @@
 import './Home.css';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import api from '../api/axios';
 
-// HomePage Data
 const data = {
   heroBanner: {
-    title:'sometjini',
+    title: 'sometjini',
     subtitle: 'Lets get you started. Check out our featured films and Staff Picks for the month!',
   },
   featuredMovies: [
@@ -27,26 +28,40 @@ const data = {
 };
 
 function Home() {
+  const [movies, setMovies] = useState([]);
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await api.get('/products/movies');
+        setMovies(response.data);
+      } catch (error) {
+        console.error('Error fetching users:', error);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
   return (
     <div className="home">
-
       <section className="hero-banner">
         <div className="hero-content">
-
+          <h1>{data.heroBanner.title}</h1>
           <p>{data.heroBanner.subtitle}</p>
-          {data.heroBanner.ctaLink && data.heroBanner.ctaText && (
-            <a className="hero-cta" href={data.heroBanner.ctaLink}>{data.heroBanner.ctaText}</a>
-          )}
         </div>
       </section>
 
       <section className="featured-section">
         <h2 className="titles">Featured Movies</h2>
-        <div className="movie-row featured-movies">
-          {data.featuredMovies.map(movie => (
+        <div className="movie-row">
+          {movies.map(movie => (
             <div key={movie.id} className="movie-card">
-              <img src={movie.image} alt={movie.title} width="150" />
-              <p>{movie.title}</p>
+
+              <p>{movie.name}</p>
+              <p>{movie.category}</p>
+              <p>{movie.price}</p>
+              <p>{movie.rating}</p>
             </div>
           ))}
         </div>
@@ -54,10 +69,10 @@ function Home() {
 
       <section className="recommended-section">
         <h2 className="titles">Staff Picks This Month</h2>
-        <div className="movie-row recommended-movies">
+        <div className="movie-row">
           {data.recommended.map(movie => (
             <div key={movie.id} className="movie-card">
-              <img src={movie.image} alt={movie.title} width="150" />
+              <img src={movie.image} alt={movie.title} />
               <p>{movie.title}</p>
             </div>
           ))}
@@ -73,10 +88,8 @@ function Home() {
           </Link>
         </div>
       </section>
-
     </div>
   );
 }
 
 export default Home;
-

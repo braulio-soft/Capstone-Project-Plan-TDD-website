@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
+import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
@@ -26,7 +26,6 @@ function App() {
   return (
     <>
     <Header />
-      <div style={{ paddingTop: '70px' }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/MyAccount" element={<MyAccount />} />
@@ -41,7 +40,6 @@ function App() {
           <Route path="/Pricingplans" element={<Pricingplans />} />
           <Route path="/ForgotPassword" element={<ForgotPassword />} />
         </Routes>
-      </div>
       <Footer />
     </>
       

@@ -21,7 +21,7 @@
 
 body {
   min-width: 320px;
-  min-height: 100vh;
+  min-height: w-auto;
   background: linear-gradient(135deg, #FFA500, #8A2BE2);
   background-attachment: fixed;
   background-repeat: no-repeat;
