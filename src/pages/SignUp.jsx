@@ -53,11 +53,11 @@ function SignUpForm() {
 
   return (
     <div className="signup-container">
-      <div style={{ maxWidth: '400px', margin: 'auto' }}>
-        <h2 className='signup'>Sign Up</h2>
+      <div className="signup-box">
+        <h2 className="signup-title">Sign Up</h2>
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="firstName">First Name:</label><br />
+            <label htmlFor="firstName">First Name</label>
             <input
               id="firstName"
               type="text"
@@ -68,7 +68,7 @@ function SignUpForm() {
             />
           </div>
           <div>
-            <label htmlFor="lastName">Last Name:</label><br />
+            <label htmlFor="lastName">Last Name</label>
             <input
               id="lastName"
               type="text"
@@ -79,7 +79,7 @@ function SignUpForm() {
             />
           </div>
           <div>
-            <label htmlFor="email">Email:</label><br />
+            <label htmlFor="email">Email</label>
             <input
               id="email"
               type="email"
@@ -90,7 +90,7 @@ function SignUpForm() {
             />
           </div>
           <div>
-            <label htmlFor="password">Password:</label><br />
+            <label htmlFor="password">Password</label>
             <input
               id="password"
               type="password"
@@ -101,7 +101,7 @@ function SignUpForm() {
             />
           </div>
           <div>
-            <label htmlFor="plan">Choose a Plan:</label><br />
+            <label htmlFor="plan">Choose a Plan</label>
             <select
               id="plan"
               name="plan"
@@ -116,7 +116,7 @@ function SignUpForm() {
             </select>
             {error && <p className="error-message">{error}</p>}
           </div>
-          <button className='button' type="submit">Join the family</button>
+          <button className="signup-button" type="submit">Join the family</button>
         </form>
       </div>
     </div>
@@ -124,4 +124,3 @@ function SignUpForm() {
 }
 
 export default SignUpForm;
-

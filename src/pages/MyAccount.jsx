@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  
-import './MyAccount.css'; 
+import { useNavigate } from 'react-router-dom';
+import './MyAccount.css';
 
 function MyAccount() {
   const [formData, setFormData] = useState({ email: '', password: '' });
@@ -8,7 +8,7 @@ function MyAccount() {
   const [currentPlan, setCurrentPlan] = useState('standard');
   const [selectedUpgrade, setSelectedUpgrade] = useState('');
   const [error, setError] = useState('');
-  const navigate = useNavigate();  
+  const navigate = useNavigate();
 
   const planPrices = {
     standard: 10.99,
@@ -16,14 +16,20 @@ function MyAccount() {
     level2: 13.99
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const planLabels = {
+    standard: 'Standard - $10.99',
+    level1: 'Level 1 - $11.99',
+    level2: 'Level 2 - $13.99'
+  };
+
+  const handleChange = ({ target: { name, value } }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoggedIn(true); 
+    // Aquí podrías validar contra una base de datos o endpoint
+    setIsLoggedIn(true);
   };
 
   const handleUpgradeChange = (e) => {
@@ -35,17 +41,18 @@ function MyAccount() {
     e.preventDefault();
 
     if (!selectedUpgrade || selectedUpgrade === currentPlan) {
-      setError('Please select a different upgrade plan.');
+      setError('Please select a different plan to upgrade.');
       return;
     }
 
     setError('');
     setCurrentPlan(selectedUpgrade);
     alert(`Successfully upgraded to the ${selectedUpgrade} plan!`);
+
     navigate('/checkOut', {
       state: {
         plan: selectedUpgrade,
-        title: `${selectedUpgrade.charAt(0).toUpperCase() + selectedUpgrade.slice(1)} Plan`,
+        title: planLabels[selectedUpgrade],
         price: planPrices[selectedUpgrade]
       }
     });
@@ -56,7 +63,7 @@ function MyAccount() {
       <div className="login-box">
         {!isLoggedIn ? (
           <>
-            <h2>Login</h2>
+            <h2>Account Login</h2>
             <form onSubmit={handleSubmit}>
               <label>Email:</label>
               <input
@@ -66,6 +73,7 @@ function MyAccount() {
                 onChange={handleChange}
                 required
               />
+
               <label>Password:</label>
               <input
                 type="password"
@@ -74,7 +82,8 @@ function MyAccount() {
                 onChange={handleChange}
                 required
               />
-              <button className='loginbttn' type="submit">Login</button>
+
+              <button className="loginbttn" type="submit">Login</button>
             </form>
 
             <div className="forgot-links">
@@ -85,19 +94,22 @@ function MyAccount() {
           </>
         ) : (
           <>
-            <h2>Welcome!</h2>
-            <p style={{ textAlign: 'center' }}>
-              You're currently on the <strong>{currentPlan}</strong> plan.
+            <h2>Welcome Back</h2>
+            <p style={{ textAlign: 'center', marginBottom: '1rem' }}>
+              You are currently subscribed to the <strong>{planLabels[currentPlan]}</strong> plan.
             </p>
+
             <form onSubmit={handleUpgradeSubmit}>
               <label>Upgrade Your Plan:</label>
               <select value={selectedUpgrade} onChange={handleUpgradeChange}>
-                <option value="">-- Not at this time --</option>
-                <option value="standard">Standard - $10.99</option>
-                <option value="level1">Level 1 - $11.99</option>
-                <option value="level2">Level 2 - $13.99</option>
+                <option value="">-- Select a plan --</option>
+                {Object.entries(planLabels).map(([key, label]) => (
+                  <option key={key} value={key}>{label}</option>
+                ))}
               </select>
+
               {error && <p className="error-message">{error}</p>}
+
               <button
                 type="submit"
                 disabled={!selectedUpgrade || selectedUpgrade === currentPlan}
@@ -113,8 +125,3 @@ function MyAccount() {
 }
 
 export default MyAccount;
-
-
-
-
-

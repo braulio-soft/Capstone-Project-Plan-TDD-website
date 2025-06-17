@@ -5,7 +5,7 @@ import api from '../api/axios';
 
 const data = {
   heroBanner: {
-    title: 'sometjini',
+    title: 'Movie House',
     subtitle: 'Lets get you started. Check out our featured films and Staff Picks for the month!',
   },
   featuredMovies: [
@@ -57,6 +57,14 @@ function Home() {
         <div className="movie-row">
           {movies.map(movie => (
             <div key={movie.id} className="movie-card">
+              <img
+                src={movie.image || '/movieimages/image.png'}
+                alt={movie.name}
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = '/movieimages/image.png';
+                }}
+              />
 
               <p>{movie.name}</p>
               <p>{movie.category}</p>
