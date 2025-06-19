@@ -1,19 +1,27 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 
+// Helper function to detect card brand
 const getCardBrand = (number) => {
   if (/^4/.test(number)) return "Visa";
   if (/^5[1-5]/.test(number)) return "Mastercard";
   if (/^3[47]/.test(number)) return "American Express";
   if (/^6(?:011|5)/.test(number)) return "Discover";
- 
   return "";
 };
 
-function Checkout({ cartItems = [] }) {
+function Checkout() {
+  const location = useLocation();
+  const { state } = location;
+
+  const planItem = state?.price
+    ? [{ id: 1, title: state.title, price: state.price }]
+    : [];
+
   const [billingInfo, setBillingInfo] = useState({
-    name: '',
-    email: '',
+    name: state?.firstName || '',
+    email: state?.email || '',
     cardNumber: '',
     expiration: '',
     cvv: '',
@@ -37,12 +45,12 @@ function Checkout({ cartItems = [] }) {
     }
   };
 
-  const total = cartItems.reduce((sum, item) => sum + item.price, 0).toFixed(2);
+  const total = planItem.reduce((sum, item) => sum + item.price, 0).toFixed(2);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("Processing payment for:", billingInfo);
-    console.log("Items:", cartItems);
+    console.log("Items:", planItem);
     alert("Purchase confirmed!");
   };
 
@@ -52,13 +60,13 @@ function Checkout({ cartItems = [] }) {
 
       <section>
         <h3>Your Items</h3>
-        {cartItems.length === 0 ? (
-          <p>Your cart is empty.</p>
+        {planItem.length === 0 ? (
+          <p>No plan selected.</p>
         ) : (
           <ul>
-            {cartItems.map(item => (
+            {planItem.map(item => (
               <li key={item.id}>
-                {item.title || item.name} — ${item.price.toFixed(2)}
+                {item.title} — ${item.price.toFixed(2)}
               </li>
             ))}
           </ul>
@@ -132,3 +140,4 @@ function Checkout({ cartItems = [] }) {
 }
 
 export default Checkout;
+

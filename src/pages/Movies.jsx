@@ -1,46 +1,46 @@
+import './Movies.css'; // crea este archivo para estilos personalizados si lo deseas
+import { useState, useEffect } from 'react';
+import api from '../api/axios';
 
+function Movies() {
+  const [movies, setMovies] = useState([]);
 
-function Movies ({ item }) {
-  if (!item) return null;
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await api.get('/products/movies');
+        setMovies(response.data);
+      } catch (error) {
+        console.error('Error fetching movies:', error);
+      }
+    };
 
-  const isMovie = item.type === 'movie';
-  const isSubscription = item.type === 'subscription';
+    fetchMovies();
+  }, []);
 
   return (
-    <div style={styles.card}>
-      <h3>{item.name}</h3>
-      <p><strong>Type:</strong> {item.type}</p>
-      <p><strong>Category:</strong> {item.category}</p>
-      <p><strong>Price:</strong> ${item.price}</p>
-      <p><strong>Payment Date:</strong> {item.payment_date}</p>
-
-      {isMovie && (
-        <>
-          <p><strong>Rating:</strong> {item.rating || 'N/A'}</p>
-          <p><strong>Release Date:</strong> {item.release_date}</p>
-        </>
-      )}
-
-      {isSubscription && (
-        <p><strong>Plan ID:</strong> {item.plan_id || 'N/A'}</p>
-      )}
-
-      <small>Created: {item.created_date}</small><br />
-      <small>Updated: {item.updated_date}</small>
+    <div className="movies-page">
+      <h1 className="page-title">All Movies</h1>
+      <div className="movie-list">
+        {movies.map(movie => (
+          <div key={movie.id} className="movie-card">
+            <img
+              src={movie.image || '/movieimages/image.png'}
+              alt={movie.name}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = '/movieimages/image.png';
+              }}
+            />
+            <h3>{movie.name}</h3>
+            <p>Category: {movie.category}</p>
+            <p>Price: {movie.price}</p>
+            <p>Rating: {movie.rating}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
-
-const styles = {
-  card: {
-    border: '1px solid #ccc',
-    borderRadius: '8px',
-    padding: '16px',
-    marginBottom: '16px',
-    backgroundColor: '#f9f9f9',
-    boxShadow: '0 2px 6px rgba(0,0,0,0.05)',
-    color: '#333'
-  }
-};
 
 export default Movies;

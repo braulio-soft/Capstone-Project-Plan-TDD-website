@@ -1,7 +1,8 @@
 #root {
   max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
   text-align: center;
   
 }
@@ -45,10 +46,12 @@
 
 body {
   background: linear-gradient(135deg, #FFA500, #8A2BE2);
-  min-height: 100vh;
   margin: 0;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-size: cover;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  font-weight: 400; /* Cambia a 500 o 600 si lo deseas más grueso */
+  font-size: 16px;  /* Tamaño base legible */
+  line-height: 1.6;
+  min-height: 200vh;
 }
 

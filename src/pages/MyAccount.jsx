@@ -1,43 +1,56 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  
-
-
-import './MyAccount.css'; 
+import { useNavigate } from 'react-router-dom';
+import './MyAccount.css';
 
 function MyAccount() {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [currentPlan, setCurrentPlan] = useState('standard');
   const [selectedUpgrade, setSelectedUpgrade] = useState('');
-  const navigate = useNavigate();  
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
+  const planPrices = {
+    standard: 10.99,
+    level1: 11.99,
+    level2: 13.99
+  };
+
+  const planLabels = {
+    standard: 'Standard - $10.99',
+    level1: 'Level 1 - $11.99',
+    level2: 'Level 2 - $13.99'
+  };
+
+  const handleChange = ({ target: { name, value } }) => {
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoggedIn(true); 
+    // Aquí podrías validar contra una base de datos o endpoint
+    setIsLoggedIn(true);
   };
 
-  const handleUpgradeChange = (e) => setSelectedUpgrade(e.target.value);
+  const handleUpgradeChange = (e) => {
+    setSelectedUpgrade(e.target.value);
+    setError('');
+  };
 
   const handleUpgradeSubmit = (e) => {
     e.preventDefault();
 
-    // If "Not at this time" or same plan selected
     if (!selectedUpgrade || selectedUpgrade === currentPlan) {
       alert('No upgrade selected. Redirecting to Home.');
-      navigate('/');  
+      navigate('/');  // Redirect to home
       return;
     }
 
-    // Upgrade selected
+    setError('');
     setCurrentPlan(selectedUpgrade);
     alert(`Successfully upgraded to the ${selectedUpgrade} plan!`);
 
-   navigate('/checkOut', { state: { plan: selectedUpgrade } });  
+   navigate('/checkOut', { state: { plan: selectedUpgrade } });  // Redirect to checkout
   };
 
   return (
@@ -45,7 +58,7 @@ function MyAccount() {
       <div className="login-box">
         {!isLoggedIn ? (
           <>
-            <h2 className='text'>Login</h2>
+            <h2>Login</h2>
             <form onSubmit={handleSubmit}>
               <label className='text'>Email:</label>
               
@@ -56,36 +69,47 @@ function MyAccount() {
                 onChange={handleChange}
                 required
               />
-              <label className='text'>Password:</label>
-              <input className="form-input"
+              <label>Password:</label>
+              <input
                 type="password"
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
                 required
               />
-              <br>
-              </br>
-              <br>
-              </br>
-              <button className='text' type="submit">Login</button>
+              <button type="submit">Login</button>
             </form>
+
+            <div className="forgot-links">
+              <p onClick={() => navigate('/ForgotPassword')} className="clickable">
+                Forgot Password?
+              </p>
+            </div>
           </>
         ) : (
           <>
-            <h2>Welcome!</h2>
-            <p style={{ textAlign: 'center' }}>
-              You're currently on the <strong>{currentPlan}</strong> plan.
+            <h2>Welcome Back</h2>
+            <p style={{ textAlign: 'center', marginBottom: '1rem' }}>
+              You are currently subscribed to the <strong>{planLabels[currentPlan]}</strong> plan.
             </p>
+
             <form onSubmit={handleUpgradeSubmit}>
               <label>Upgrade Your Plan:</label>
               <select value={selectedUpgrade} onChange={handleUpgradeChange}>
-                <option value="">-- Not at this time --</option>
-                <option value="standard">Standard - $10.99</option>
-                <option value="level1">Level 1 - $11.99</option>
-                <option value="level2">Level 2 - $13.99</option>
+                <option value="">-- Select a plan --</option>
+                {Object.entries(planLabels).map(([key, label]) => (
+                  <option key={key} value={key}>{label}</option>
+                ))}
               </select>
-              <button type="submit">Upgrade Plan</button>
+
+              {error && <p className="error-message">{error}</p>}
+
+              <button
+                type="submit"
+                disabled={!selectedUpgrade || selectedUpgrade === currentPlan}
+              >
+                Upgrade Plan
+              </button>
             </form>
           </>
         )}
@@ -95,5 +119,3 @@ function MyAccount() {
 }
 
 export default MyAccount;
-
-

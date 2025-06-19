@@ -1,8 +1,4 @@
-
 import React, { useState } from 'react';
-import './SignUp.css'; 
-
-
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -13,33 +9,52 @@ function SignUpForm() {
     plan: ''
   });
 
+  const [error, setError] = useState('');
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
       ...prevState,
       [name]: value
     }));
+
+    if (name === 'plan' && value) {
+      setError('');
+    }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (!formData.plan) {
-      alert('Please select a pricing plan.');
+      setError('Please select a pricing plan.');
       return;
     }
 
-    console.log('Sign Up:', formData);
-    // send to API or handle validation here
+    setError('');
+
+    const planPrices = {
+      standard: 10.99,
+      level1: 11.99,
+      level2: 13.99
+    };
+
+    navigate('/checkOut', {
+      state: {
+        ...formData,
+        price: planPrices[formData.plan],
+        title: `${formData.plan.charAt(0).toUpperCase() + formData.plan.slice(1)} Plan`
+      }
+    });
   };
 
   return (
-    <div className='SignUp-container'>
-          <div style={{ maxWidth: '400px', margin: 'auto' }}>
-      <h2 className='text'>Sign Up</h2>
+    <div style={{ maxWidth: '400px', margin: 'auto' }}>
+      <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          <label className='text'>First Name:</label><br />
+          <label>First Name:</label><br />
           <input
             type="text"
             name="firstName"
@@ -49,7 +64,7 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label className='text'>Last Name:</label><br />
+          <label>Last Name:</label><br />
           <input
             type="text"
             name="lastName"
@@ -59,7 +74,7 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label className='text'>Email:</label><br />
+          <label>Email:</label><br />
           <input
             type="email"
             name="email"
@@ -69,7 +84,7 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label className='text'>Password:</label><br />
+          <label>Password:</label><br />
           <input
             type="password"
             name="password"
@@ -79,22 +94,20 @@ function SignUpForm() {
           />
         </div>
         <div>
-          <label className='text'>Choose a Plan:</label><br />
+          <label>Choose a Plan:</label><br />
           <select
             name="plan"
             value={formData.plan}
             onChange={handleChange}
             required
           >
-            <option className='list' value="">-- Select a plan --</option>
-            <option className='list' value="standard">Standard - $10.99</option>
-            <option className='list' value="level1">Level 1 - $11.99</option>
-            <option className='list' value="level2">Level 2 - $13.99</option>
+            <option value="">-- Select a plan --</option>
+            <option value="standard">Standard - $10.99</option>
+            <option value="level1">Level 1 - $11.99</option>
+            <option value="level2">Level 2 - $13.99</option>
           </select>
         </div>
-        <br></br>
-        <br></br>
-        <button className='text' type="submit">Join the family</button>
+        <button type="submit">Join the family</button>
       </form>
     </div>
 
