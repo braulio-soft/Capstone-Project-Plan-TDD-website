@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './SignUp.css';
+
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -111,7 +113,7 @@ function SignUpForm() {
       </form>
     </div>
 
-    </div>
+    
 
   );
 }
